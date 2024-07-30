@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active{
+    @apply text-black bg-green-400 px-2 py-1 rounded-md duration-300
+}
