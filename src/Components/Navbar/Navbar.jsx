@@ -27,8 +27,8 @@ export default function Navbar() {
             <li><NavLink to='brands'>Brands</NavLink></li>
           </ul>
         </div>
-        <div className={`${smallNav ? "max-h-screen":"max-h-0 overflow-hidden"} md:max-h-full duration-500 min-w-full md:min-w-min`}>
-        <ul className='flex min-w-min flex-col md:flex-row md:items-center gap-2 text-black'>
+        <div className={`${smallNav ? "max-h-screen":"max-h-0 overflow-hidden"} flex justify-center md:max-h-full duration-500 min-w-full md:min-w-min`}>
+        <ul className='flex min-w-min flex-row md:items-center gap-2  py-1 items-center text-black'>
             <li><FaFacebook /></li>
             <li><FaTwitter/></li>
             <li><FaLinkedin /></li>
