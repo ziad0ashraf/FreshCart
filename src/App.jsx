@@ -16,14 +16,14 @@ function App() {
 
   let routers=createBrowserRouter([
     {path:'',element:<Layout/>,children:[
-      {path:'home', element:<Home/>},
+      {index:true, element:<Home/>},
       {path:'brands', element:<Brands/>},
       {path:'cart', element:<Cart/>},
       {path:'products', element:<Products/>},
       {path:'about', element:<About/>},
       {path:'categories', element:<Categories/>},
       {path:'login', element:<Login/>},
-      {index:true, element:<Register/>},
+      {path:'register', element:<Register/>},
       {path:'*', element:<Notfound/>},
     ]},
   ])
