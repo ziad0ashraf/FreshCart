@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import style from './Login.module.css'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import axios from 'axios'
 import { VscLoading } from 'react-icons/vsc'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../Context/UserContext'
 
 export default function Login() {
 
   const [incorrect, setIncorrect] = useState('')
   const [loading, setLoading] = useState(false)
-  
+  let {setUserData} = useContext(UserContext);
   let navigate = useNavigate()
 
   async function login(values) {
@@ -18,7 +19,9 @@ export default function Login() {
       setLoading(true)
       let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin',values)
       console.log(data);
-      navigate('/')
+      localStorage.setItem('user-token',data.token)
+      navigate('/home')
+      setUserData(data.token)
     } catch (error) {
       setLoading(false)
       console.log(error);
@@ -28,7 +31,7 @@ export default function Login() {
 
   let validations = Yup.object().shape({
     email: Yup.string().email('invalid email').required('Email is required !'),
-    password: Yup.string().matches(/^[A-Z][\w@]{5,10}$/,'invalid password ex.(Ziad123)').required('Password is required'),
+    password: Yup.string().matches(/^[A-Z][\w@]{5,10}$/,'invalid password ').required('Password is required'),
   })
 
 
@@ -46,9 +49,9 @@ export default function Login() {
     <section>
       <div className="container my-16">
       <div className='flex justify-center'>
-        <h1 className='text-4xl font-medium'>Register</h1>
+        <h1 className='text-4xl font-medium'>Login</h1>
       </div>
-      <form onSubmit={formik.handleSubmit} className={`max-w-lg my-10 mx-auto border-2 p-4 rounded-lg ${incorrect?"border-red-500":"border-green-400"} duration-500`}>
+      <form onSubmit={formik.handleSubmit} className={`max-w-lg my-10 mx-auto border-2 p-4 rounded-lg ${incorrect?"border-red-500 shadow-red-500 ":" border-green-500 shadow-green-500 "} duration-500 shadow-xl`}>
 
         <div className="relative z-0 w-full mb-5 group">
             <input onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.email} type="email" name="email" id="email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " required />

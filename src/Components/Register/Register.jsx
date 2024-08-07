@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import style from './Register.module.css'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import axios from 'axios'
 import { VscLoading } from "react-icons/vsc";
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../Context/UserContext'
 
 export default function Register() {
 
   const [existEmail, setExistEmail] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  let {setUserData}=useContext(UserContext)
   let navigate= useNavigate()
   async function register(values) {
     try {
@@ -18,6 +21,7 @@ export default function Register() {
       console.log(data);
       localStorage.setItem('user-token',data.token)
       navigate('/')
+      setUserData(data.token)
     } catch (error) {
       setLoading(false)
       console.log(error.response.data.message);
@@ -53,7 +57,7 @@ export default function Register() {
       <div className='flex justify-center'>
         <h1 className='text-4xl font-medium'>Register</h1>
       </div>
-      <form onSubmit={formik.handleSubmit} className={`max-w-lg my-10 mx-auto border-2 p-4 rounded-lg ${existEmail?"border-red-500":"border-green-400"} duration-500`}>
+      <form onSubmit={formik.handleSubmit} className={`max-w-lg my-10 mx-auto border-2 p-4 rounded-lg ${existEmail?"border-red-500 shadow-red-500 ":" border-green-500 shadow-green-500 "} duration-500 shadow-xl`}>
           <div className="relative z-0 w-full mb-5 group">
               <input onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.name} type="text" name="name" id="name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " required />
               <label htmlFor="name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
