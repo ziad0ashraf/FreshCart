@@ -13,18 +13,20 @@ import Notfound from './Components/Notfound/Notfound'
 import Products from './Components/Products/Products'
 import UserContextProvider from './Context/UserContext'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
+import ProductDetails from './Components/ProductDetails/ProductDetails'
 
 function App() {
 
   let routers=createBrowserRouter([
     {path:'',element:<Layout/>,children:[
-      {path:'home', element:<ProtectedRoute><Home/></ProtectedRoute>},
+      {index:true, element:<ProtectedRoute><Home/></ProtectedRoute>},
       {path:'brands', element:<ProtectedRoute><Brands/></ProtectedRoute>},
       {path:'cart', element:<ProtectedRoute><Cart/></ProtectedRoute>},
       {path:'products', element:<ProtectedRoute><Products/></ProtectedRoute>},
       {path:'about', element:<ProtectedRoute><About/></ProtectedRoute>},
       {path:'categories', element:<ProtectedRoute><Categories/></ProtectedRoute>},
-      {index:true, element:<Login/>},
+      {path:'productdetails/:id', element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
+      {path:'login', element:<Login/>},
       {path:'register', element:<Register/>},
       {path:'*', element:<Notfound/>},
     ]},

@@ -13,18 +13,20 @@ export default function Register() {
   const [loading, setLoading] = useState(false)
 
   let {setUserData}=useContext(UserContext)
+
   let navigate= useNavigate()
+  
   async function register(values) {
     try {
       setLoading(true)
       let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup',values)
-      console.log(data);
+      // console.log(data);
       localStorage.setItem('user-token',data.token)
-      navigate('/')
       setUserData(data.token)
+      navigate('/')
     } catch (error) {
       setLoading(false)
-      console.log(error.response.data.message);
+      // console.log(error.response.data.message);
       setExistEmail(error.response.data.message)
     }
   }

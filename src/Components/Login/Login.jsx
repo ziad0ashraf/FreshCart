@@ -18,13 +18,13 @@ export default function Login() {
     try {
       setLoading(true)
       let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin',values)
-      console.log(data);
+      // console.log(data);
       localStorage.setItem('user-token',data.token)
-      navigate('/home')
       setUserData(data.token)
+      navigate('/')
     } catch (error) {
       setLoading(false)
-      console.log(error);
+      // console.log(error);
       setIncorrect(error.response.data.message)
     }
   }

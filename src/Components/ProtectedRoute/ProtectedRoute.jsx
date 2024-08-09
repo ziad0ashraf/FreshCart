@@ -8,7 +8,7 @@ export default function ProtectedRoute({children}) {
   if (localStorage.getItem('user-token')) {
     return children
   }else{
-    return <Navigate to ={'/'}/>
+    return <Navigate to ={'/login'}/>
   }
 
 }
