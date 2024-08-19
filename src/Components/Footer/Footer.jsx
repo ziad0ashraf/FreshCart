@@ -15,7 +15,7 @@ export default function Footer() {
 
   return (<>
 
-    <footer className='bg-gray-200 px-4 py-8 font-sans text-slate-700'>
+    <footer className='bg-gray-200 px-4 py-8 font-sans text-slate-700 z-50'>
       <div className="container flex flex-col gap-10">
         <div>
           <h1 className='text-2xl pb-3 text-black'>Get the FreshCart app</h1>
@@ -25,7 +25,7 @@ export default function Footer() {
           <input type="email" placeholder='E-mail ...' className='w-full md:w-5/6 px-3 rounded-md focus:outline-main' />
           <button  className='bg-main w-full md:w-48 rounded-md text-white py-1' >Share App Link</button>
         </div>
-        <div className='flex flex-col md:flex-row justify-between items-center border-t-2 border-b-2 border-slate-300 py-3 gap-5'>
+        <div className='flex flex-col md:flex-row justify-between items-center border-y-2 border-slate-300 py-3 gap-5'>
           <div className='flex justify-between items-center gap-4'>
           <h3>Payment Partners</h3>
           <div className='flex gap-3 cursor-pointer'>

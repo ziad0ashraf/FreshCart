@@ -27,8 +27,8 @@ export default function MainSlider() {
     </div>
     <div className='w-full md:w-1/4'>
       <div>
-        <img src={slide1} alt="" className='w-full' />
-        <img src={slide3} alt="" className='w-full' />
+        <img src={slide1} alt="" className='w-full md:h-[200px]' />
+        <img src={slide3} alt="" className='w-full md:h-[200px]' />
       </div>
     </div>
   </div>

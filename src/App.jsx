@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Components/Layout/Layout'
@@ -14,6 +13,21 @@ import Products from './Components/Products/Products'
 import UserContextProvider from './Context/UserContext'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import ProductDetails from './Components/ProductDetails/ProductDetails'
+import CartContextProvider from './Context/CartContext'
+import { Toaster } from 'react-hot-toast'
+import AllOrders from './Components/AllOrders/AllOrders'
+import CheckOut from './Components/CheckOut/CheckOut'
+import Wishlist from './Components/Wishlist/Wishlist'
+import WishlistContextProvider from './Context/WishlistContext'
+import { QueryClient, QueryClientContext, QueryClientProvider } from '@tanstack/react-query'
+import ProductsByCategory from './Components/ProductsByCategory/ProductsByCategory'
+import ProductsByBrand from './Components/ProductsByBrand/ProductsByBrand'
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
+import ResetPassword from './Components/ResetPassword/ResetPassword'
+import Address from './Components/Address/Address'
+import AddressContextProvider from './Context/AddressContext'
+import AddAddress from './Components/AddAddress/AddAddress'
+import AddressDetails from './Components/AddressDetails/AddressDetails'
 
 function App() {
 
@@ -25,22 +39,39 @@ function App() {
       {path:'products', element:<ProtectedRoute><Products/></ProtectedRoute>},
       {path:'about', element:<ProtectedRoute><About/></ProtectedRoute>},
       {path:'categories', element:<ProtectedRoute><Categories/></ProtectedRoute>},
+      {path:'allorders', element:<ProtectedRoute><AllOrders/></ProtectedRoute>},
+      {path:'checkout', element:<ProtectedRoute><CheckOut/></ProtectedRoute>},
+      {path:'wishlist', element:<ProtectedRoute><Wishlist/></ProtectedRoute>},
+      {path:'productsByCategory/:id', element:<ProtectedRoute><ProductsByCategory/></ProtectedRoute>},
+      {path:'productsByBrand/:id', element:<ProtectedRoute><ProductsByBrand/></ProtectedRoute>},
       {path:'productdetails/:id', element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
+      {path:'address', element:<ProtectedRoute><Address/></ProtectedRoute>},
+      {path:'addAddress', element:<ProtectedRoute><AddAddress/></ProtectedRoute>},
+      {path:'addressDetails/:id', element:<ProtectedRoute><AddressDetails/></ProtectedRoute>},
       {path:'login', element:<Login/>},
       {path:'register', element:<Register/>},
+      {path:'forgotPassword', element:<ForgotPassword/>},
+      {path:'resetPassword', element:<ResetPassword/>},
       {path:'*', element:<Notfound/>},
     ]},
   ])
   
+  let query=new QueryClient()
 
-  return (<>
-  <UserContextProvider>
-  
-  <RouterProvider router={routers}></RouterProvider>
-
-  </UserContextProvider>
-    </>
-  )
-}
+  return (
+ <QueryClientProvider client={query}>
+      <AddressContextProvider>
+        <WishlistContextProvider>
+          <CartContextProvider>
+            <UserContextProvider>
+              <RouterProvider router={routers} />
+              <Toaster />
+            </UserContextProvider>
+          </CartContextProvider>
+        </WishlistContextProvider>
+      </AddressContextProvider>
+    </QueryClientProvider>
+  );
+  }
 
 export default App

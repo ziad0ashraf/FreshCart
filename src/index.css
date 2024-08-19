@@ -3,16 +3,20 @@
 @tailwind utilities;
 
 .active{
-    @apply text-black bg-main px-2 py-1 rounded-md duration-200
+    @apply text-black bg-main rounded-md duration-500
 }
-.custom-scrollbar::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb{
     @apply bg-main rounded-lg 
   }
-.custom-scrollbar::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 10px; 
+    height: 10px;
 }
-.custom-scrollbar::-webkit-scrollbar-track-piece {
+::-webkit-scrollbar-track-piece {
     @apply bg-gray-200 rounded-lg
+}
+nav li{
+    margin-block: 10px;
 }
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
@@ -39,6 +43,12 @@ body{
 a , a:hover{
     /* color: black; */
     text-decoration: none;
+}
+.product:hover
+{
+    box-shadow: var(--shadow);
+    border: solid 1px var(--main-color);
+    transition: all 0.5s;
 }
 .product:hover
 {
@@ -79,3 +89,32 @@ a , a:hover{
 {
     background-color: var(--light-color) !important;
 }
+.containerHeart input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .containerHeart {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .containerHeart svg {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    transition: all 0.3s;
+  }
+  
+  .containerHeart svg:hover {
+    transform: scale(1.1);
+  }
+  
+  

@@ -8,7 +8,7 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <div className="md:mt-16 font-sans">
+      <div className="mt-16 md:mt-18 font-sans">
         <Outlet />
       </div>
       <Footer />

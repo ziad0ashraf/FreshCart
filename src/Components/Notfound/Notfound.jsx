@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import style from './Notfound.module.css'
+import notFound from '../../assets/images/notfoundpage.jpeg'
+
 export default function Notfound() {
 
 
   return (<>
 
-    <h1 className='text-4xl bg-red-600'>Notfound</h1>
-
+    <img src={notFound} className='h-lvh w-full' alt="" />
   </>
   )
 }
