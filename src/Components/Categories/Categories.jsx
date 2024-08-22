@@ -23,13 +23,17 @@ export default function Categories() {
     <section>
       <div className="container">
         {!isFetching?<>
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-5 p-5'>
           {categories?.map((category,index)=>(
-            <div key={index}>
-              <Link className='cursor-pointer' to={`/productsByCategory/${category._id}`}>
+            <div className='border hover:scale-105 hover:border-main duration-300 rounded-lg overflow-hidden' key={index}>
+              <Link className='cursor-pointer ' to={`/productsByCategory/${category._id}`}>
               <div className='flex flex-col justify-center items-center'>
-                <div><img src={category.image} className='w-60' alt={category.name} /></div>
-                <h1 className='text-2xl font-medium'>{category.name}</h1>
+                <div className='h-[300px] w-full'>
+                  <img src={category.image} className='w-full h-full object-cover' alt={category.name} />
+                </div>
+                <div className='w-full text-center text-main text-2xl font-medium mt-2 bg-slate-100'>
+                <h1 className=''>{category.name}</h1>
+                </div>
               </div>
               </Link>
             </div>

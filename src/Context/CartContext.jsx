@@ -13,8 +13,6 @@ export default function CartContextProvider({children}) {
     const [loading, setLoading] = useState(false)
     const [currentId, setCurrentId] = useState(null)
     const [animationCart, setAnimationCart] = useState(false)
-    const [isCart, setIsCart] = useState(false)
-    const [cartOwner, setCartOwner] = useState(null)
 
     let headers={
         token: localStorage.getItem('user-token')
@@ -36,7 +34,6 @@ export default function CartContextProvider({children}) {
             setCartItems(data)
             setLoading(false)
             setAnimationCart(true)
-            setIsCart(true)
             setTimeout(() => setAnimationCart(false), 3000)
         } catch (error) {
             // console.log(error);
@@ -47,12 +44,12 @@ export default function CartContextProvider({children}) {
         try {
             if (localStorage.getItem('user-token')) {
                 let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`,{headers})
-                console.log(data);
+                // console.log(data);
                 setCartItems(data)   
                 return data        
             }
         } catch (error) {
-            console.log(error);  
+            // console.log(error);  
         }
     }
     
@@ -74,11 +71,7 @@ export default function CartContextProvider({children}) {
     }
     async function deleteCart(productId) {
         try {
-            let data = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
-                {
-                    headers
-                },
-            )
+            let {data} = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`,{headers})
             setCartItems(data)
             return data
         } catch (error) {
@@ -96,7 +89,7 @@ export default function CartContextProvider({children}) {
                 headers
             }
         )
-            console.log(data);
+            // console.log(data);
             setLoading(false)
             window.location.href=data.session.url
             setCartItems(null)
@@ -109,28 +102,27 @@ export default function CartContextProvider({children}) {
             })
         }
     }
-    
-    
-    // async function getAllOrders() {
-    //     try {
-    //         let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${cartOwner}`)
-    //         console.log(data);
-    //         return data
-    //     } catch (error) {
-    //         console.log(error);  
-    //     }
-    // }
-    
-    useEffect(() => {
-        if (isCart) {
-            getCartItems()
+    async function clearCart() {
+        try {
+            setLoading(true)
+            let {data} = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart`,{headers})
+            // console.log(data);
+            setCartItems(data)
+            setLoading(false)
+        } catch (error) {
+            // console.log(error);
         }
-    }, [isCart])
+    }
+
+        
+    useEffect(() => {
+        getCartItems()
+    }, [])
     
           
 
     
-    return <CartContext.Provider value={{addToCart,getCartItems,updateProduct,deleteCart,checkOut,cartItems,loading,currentId,animationCart}}>
+    return <CartContext.Provider value={{addToCart,getCartItems,updateProduct,deleteCart,checkOut,clearCart,cartItems,loading,currentId,animationCart}}>
         {children}
     </CartContext.Provider>
 }

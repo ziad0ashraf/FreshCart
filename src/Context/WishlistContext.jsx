@@ -39,6 +39,7 @@ export default function WishlistContextProvider({ children }) {
             if (localStorage.getItem('user-token')) {
                 setIsLoading(true);
                 const { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/wishlist`, { headers });
+                // console.log(data);
                 setWishlistProducts(data?.data);
                 setWishlistCount(data.count)          
                 setIsLoading(false); 
@@ -53,10 +54,7 @@ export default function WishlistContextProvider({ children }) {
         try {
             await axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`, { headers });
             GetWishlist();
-            toast('Item deleted from wishlist!',
-                {
-                    icon:<FaHeartBroken className='text-red-600' />
-                }
+            toast('Item deleted from wishlist!',{icon:<FaHeartBroken className='text-red-600' />}
             )
         } catch (error) {
             console.error(error);
@@ -65,7 +63,7 @@ export default function WishlistContextProvider({ children }) {
     }
 
     useEffect(() => {
-            GetWishlist()
+        GetWishlist()
     }, [])
     
 

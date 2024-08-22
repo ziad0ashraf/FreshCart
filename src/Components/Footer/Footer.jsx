@@ -15,7 +15,7 @@ export default function Footer() {
 
   return (<>
 
-    <footer className='bg-gray-200 px-4 py-8 font-sans text-slate-700 z-50'>
+    <footer className='bg-gray-200 px-4 py-8 font-sans text-slate-700 z-50 overflow-hidden'>
       <div className="container flex flex-col gap-10">
         <div>
           <h1 className='text-2xl pb-3 text-black'>Get the FreshCart app</h1>

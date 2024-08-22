@@ -7,13 +7,13 @@ import { VscLoading } from 'react-icons/vsc';
 import { WishlistContext } from '../../Context/WishlistContext';
 
 export default function RecentProducts({product}) {
+  let {AddToWishlist,wishlistProducts,deleteWishlist}=useContext(WishlistContext)
 
      const {addToCart,currentId,loading} = useContext(CartContext)
      
-
      const [wishlistLoading, setWishlistLoading] = useState(false);
+
      
-     let {AddToWishlist,wishlistProducts,deleteWishlist}=useContext(WishlistContext)
 
 
         

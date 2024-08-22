@@ -13,7 +13,7 @@ export default function Brands() {
     queryKey:['GetBrands'],
     queryFn:getBrands
   })
-  console.log(data);
+  // console.log(data);
   let brands=data?.data.data
 
   return (<>
@@ -23,7 +23,7 @@ export default function Brands() {
             {!isFetching?<>
               <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
               {brands?.map((brand,index)=>(
-                <div className='flex flex-col justify-center items-center' key={index}>
+                <div className='flex flex-col justify-center items-center hover:shadow-lg hover:shadow-main hover:scale-105 duration-150' key={index}>
                   <Link className='cursor-pointer' to={`/productsByBrand/${brand._id}`}>
                   <div>
                     <img src={brand.image} className='w-60' alt={brand.name} />

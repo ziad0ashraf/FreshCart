@@ -1,17 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { WishlistContext } from '../../Context/WishlistContext';
 import { Link } from 'react-router-dom';
-import { FaStarHalfAlt } from 'react-icons/fa';
+import { FaHeartBroken, FaStarHalfAlt } from 'react-icons/fa';
 import Loading from '../Loading/Loading';
+import { CartContext } from '../../Context/CartContext';
+import { VscLoading } from 'react-icons/vsc';
 
 export default function Wishlist() {
-  const { wishlistProducts, deleteWishlist, GetWishlist, isLoading } = useContext(WishlistContext);
+  const { wishlistProducts, deleteWishlist, GetWishlist, isLoading,wishlistCount } = useContext(WishlistContext);
+  const {addToCart,currentId,loading} = useContext(CartContext)
+
+  const [wishlistLoading, setWishlistLoading] = useState(false);
 
 
-
-  const handleDelete = async (productId, e) => {
-      e.stopPropagation();
+  const handleDelete = async (productId,e) => {
+    e.stopPropagation();
+    if (!wishlistLoading) {
+      setWishlistLoading(true);
       await deleteWishlist(productId);
+      setWishlistLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -24,7 +32,8 @@ export default function Wishlist() {
       <section>
         <div className="container">
           {!isLoading ? (
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+            wishlistCount != 0?
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
               {wishlistProducts?.map((product,index) => (
                 <div key={index} className='product px-2 pb-2 overflow-hidden rounded-xl font-sans'>
                   <div className='cursor-pointer'>
@@ -49,10 +58,22 @@ export default function Wishlist() {
                         </h2>
                       </div>
                     </Link>
-                    <button onClick={(e) => handleDelete(product.id, e)} className='bg-red-600 text-white p-2 rounded-lg mt-3'>Delete</button>
+                    <div className='flex justify-center'>
+                      {currentId==product.id&&loading?
+                      <button type="button" className=" text-white bg-green-700 hover:bg-main focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><VscLoading className='text-xl animate-spin' /></button>
+                      :
+                      <button onClick={()=>addToCart(product.id)} className='btn bg-main p-2 rounded-lg text-white'>Add To Cart</button>
+                      }
+                    </div>
                   </div>
                 </div>
               ))}
+            </div>
+            :
+            <div className='h-lvh flex justify-center items-center'>
+              <div className='text-4xl flex items-center gap-4 text-red-600'>
+              There are no products in the wishlist <FaHeartBroken/>
+              </div>
             </div>
           ) : (
             <Loading />

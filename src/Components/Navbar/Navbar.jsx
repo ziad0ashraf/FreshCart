@@ -28,6 +28,11 @@ export default function Navbar() {
       navigate('/login')
     }
 
+    function toggleButton() {
+      setSmallNav(!smallNav)
+      setDropDown(false)
+    }
+
   return (<>
 
     <nav className='fixed top-0 inset-x-0 bg-gray-200 text-slate-700 font-medium pt-4 md:py-2 z-10 font-sans'>
@@ -35,7 +40,7 @@ export default function Navbar() {
         <div className='min-w-full md:min-w-min flex flex-col md:flex-row md:items-center gap-2'>
         <div className='flex justify-between items-center'>
           <img src={Logo} width={160} alt="" />
-          <button onClick={()=>setSmallNav(!smallNav)} className={`block md:hidden duration-500 ${smallNav ? "text-green-400" : "text-slate-700"}`}><FaAlignJustify className='text-3xl'/></button>
+          <button onClick={()=>toggleButton()} className={`block md:hidden duration-500 ${smallNav ? "text-green-400" : "text-slate-700"}`}><FaAlignJustify className='text-3xl'/></button>
         </div>
         {userData&&
                 <ul className={`${smallNav ? "max-h-screen": "max-h-0 overflow-hidden"} font-semibold md:max-h-full duration-500 md:flex flex-col md:flex-row md:gap-5`}>
@@ -47,21 +52,23 @@ export default function Navbar() {
         }
         </div>
         
-        <div className={`${smallNav ? "max-h-screen":"max-h-0 overflow-hidden"} flex justify-center items-center gap-2 md:max-h-full duration-500 min-w-full md:min-w-min`}>
+        <div className={`${smallNav ? "max-h-screen":"max-h-0"} overflow-hidden flex justify-center items-center md:max-h-full duration-500 min-w-full md:min-w-min`}>
         {userData&&
         <>
+        <div className='flex items-center justify-between md:gap-5'>
         <div className='relative '>
           <button onClick={()=>setDropDown(!dropDown)} className={`${dropDown&&'text-main'} duration-500 text-3xl`}><GrUserManager /></button>
-          <div className={`${dropDown?'max-h-full':'max-h-0'} overflow-hidden duration-500 fixed mt-3 bg-main rounded-lg`}>
-            <ul className='p-2 '>
+          <div className={`${dropDown?'max-h-full max-w-full':'max-h-0 max-w-0'} overflow-hidden duration-500 fixed mt-3 bg-main rounded-lg`}>
+            <ul className='p-2 whitespace-nowrap'>
               <li><NavLink to='address'>Your Address</NavLink></li>
-              <li><NavLink to=''>Your information data</NavLink></li>
+              <li><NavLink to='updatePassword'>Change Your Password</NavLink></li>
+              <li><NavLink to='updateUserData'>Change Your Information Data</NavLink></li>
               <li></li>
             </ul>
           </div>
         </div>
-          <div className='flex items-center gap-4'>
-          <NavLink className={({ isActive }) =>`${isActive ? 'text-red-600' : 'text-slate-700'} px-2 py-2 duration-300`} to='wishlist'>
+          <div className='flex justify-center items-center gap-3 md:gap-5'>
+          <NavLink className={({ isActive }) =>`${isActive ? 'text-red-600' : 'text-slate-700'} px-1 py-2 duration-300`} to='wishlist'>
             <div className='flex items-center gap-2'>
               <span className='text-base'>Wishlist</span>
               <span className={`${animationWishlist?'text-red-600 animate-bounce':''} relative duration-150`}><FaHeart/>
@@ -71,14 +78,15 @@ export default function Navbar() {
           </NavLink>
           <Link to='cart'>
           <div className={`${animationCart?'animate-bounce':''} flex me-5 text-main relative`}>
-            <span className='text-4xl '><BsCart/></span>
+            <span className='text-4xl'><BsCart/></span>
             <span className='absolute right-3 top-1'>{cartItems?.numOfCartItems ? cartItems?.numOfCartItems : 0}</span>
           </div>
             </Link>    
           </div>
+        </div>
         </>        
         }
-        <ul className='flex min-w-min flex-row md:items-center gap-4 cursor-pointer py-1 items-center'>
+        <ul className='flex flex-row md:items-center gap-2 md:gap-5 cursor-pointer py-1 items-center'>
             <li><FaFacebook /></li>
             <li><FaTwitter/></li>
             <li><FaLinkedin /></li>

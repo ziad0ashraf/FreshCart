@@ -22,26 +22,6 @@ export default function CategorySlider() {
     getRecentCategories()
   }, [])
 
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "flex",justifyContent:'center',alignItems:'center', background: "rgba(15, 173, 15, 0.7)",padding:'25px',borderRadius:'50%', }}
-        onClick={onClick}
-      />
-    );
-  }
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style,zIndex:'1', display: "flex",justifyContent:'center',alignItems:'center', background: "rgba(15, 173, 15, 0.7)",padding:'25px',borderRadius:'50%',fontSize:'50px' }}
-        onClick={onClick}
-      />
-    );
-  }
 
   var settings = {
     dots: false,
@@ -51,9 +31,7 @@ export default function CategorySlider() {
     slidesToScroll: 5,
     arrows:true,
     autoplay:true,
-    autoplaySpeed:3000,
-    nextArrow: <SampleNextArrow />,
-    prevArrow:<SamplePrevArrow/>,
+    autoplaySpeed:1500,
   };
 
 

@@ -8,6 +8,7 @@ import Loading from '../Loading/Loading'
 import { CartContext } from '../../Context/CartContext'
 import { WishlistContext } from '../../Context/WishlistContext'
 import { VscLoading } from 'react-icons/vsc'
+import NoProducts from '../NoProducts/NoProducts'
 export default function ProductsByBrand() {
   const { addToCart, loading, currentId } = useContext(CartContext);
   const { AddToWishlist, wishlistProducts, deleteWishlist } = useContext(WishlistContext);
@@ -99,7 +100,7 @@ export default function ProductsByBrand() {
       </div>        
         </>
         :
-        <h1>theres no products in this category right now</h1>
+        <NoProducts/>
         }
         </>
         :

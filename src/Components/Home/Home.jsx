@@ -31,13 +31,13 @@ export default function Home() {
   return (<>
 
     {products.length?<>
-      <section>
+      <section className='overflow-hidden'>
         
         <MainSlider/>
 
       </section>
 
-      <section id='categorySlider'>
+      <section id='categorySlider' className='overflow-hidden'>
         <CategorySlider/>
       </section>
 

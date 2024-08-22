@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .active{
-    @apply text-black bg-main rounded-md duration-500
+    @apply text-white bg-main rounded-md duration-500
 }
 ::-webkit-scrollbar-thumb{
     @apply bg-main rounded-lg 
@@ -117,4 +117,29 @@ a , a:hover{
     transform: scale(1.1);
   }
   
-  
+  .shipped{
+    animation: move 4s infinite ;
+  }
+
+  @keyframes move {
+    0% {
+      left: 20%;
+      transform: rotateY(0deg);
+    }
+    25% {
+      left: 20%;
+      transform: rotateY(0deg);
+    }
+    50% {
+      left: 100%;
+      transform: rotateY(180deg);
+    }
+    75% {
+      left: 100%;
+      transform: rotateY(180deg);
+    }
+    100% {
+      left: 20%;
+      transform: rotateY(0deg);
+    }
+  }

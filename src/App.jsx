@@ -28,6 +28,8 @@ import Address from './Components/Address/Address'
 import AddressContextProvider from './Context/AddressContext'
 import AddAddress from './Components/AddAddress/AddAddress'
 import AddressDetails from './Components/AddressDetails/AddressDetails'
+import UpdatePassword from './Components/UpdatePassword/UpdatePassword'
+import UpdateUserData from './Components/UpdateUserData/UpdateUserData'
 
 function App() {
 
@@ -45,9 +47,11 @@ function App() {
       {path:'productsByCategory/:id', element:<ProtectedRoute><ProductsByCategory/></ProtectedRoute>},
       {path:'productsByBrand/:id', element:<ProtectedRoute><ProductsByBrand/></ProtectedRoute>},
       {path:'productdetails/:id', element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
+      {path:'addressDetails/:id', element:<ProtectedRoute><AddressDetails/></ProtectedRoute>},
       {path:'address', element:<ProtectedRoute><Address/></ProtectedRoute>},
       {path:'addAddress', element:<ProtectedRoute><AddAddress/></ProtectedRoute>},
-      {path:'addressDetails/:id', element:<ProtectedRoute><AddressDetails/></ProtectedRoute>},
+      {path:'updatePassword', element:<ProtectedRoute><UpdatePassword/></ProtectedRoute>},
+      {path:'updateUserData', element:<ProtectedRoute><UpdateUserData/></ProtectedRoute>},
       {path:'login', element:<Login/>},
       {path:'register', element:<Register/>},
       {path:'forgotPassword', element:<ForgotPassword/>},

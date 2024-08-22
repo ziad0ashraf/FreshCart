@@ -48,12 +48,12 @@ export default function ForgotPassword() {
     validationSchema:validations,
     onSubmit:forgotPassword
   })
-{/* <><><><><><><><>VerfiyResetCode<><><><><><><><><> */}
+{/* <><><><><><><><>VerifyResetCode<><><><><><><><><> */}
     async function verifyResetCode(values) {
       try {        
         setLoading(true)
         let {data}= await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode`,values)
-        console.log(data);
+        // console.log(data);
         navigate('/resetPassword')
         setLoading(false)
       } catch (error) {
