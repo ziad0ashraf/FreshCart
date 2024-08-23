@@ -16,7 +16,7 @@ export default function Footer() {
   return (<>
 
     <footer className='bg-gray-200 px-4 py-8 font-sans text-slate-700 z-50 overflow-hidden'>
-      <div className="container flex flex-col gap-10">
+      <div className="container flex flex-col gap-5 md:gap-10">
         <div>
           <h1 className='text-2xl pb-3 text-black'>Get the FreshCart app</h1>
           <p>We will send you al link, open it on your phone to download the app</p>
@@ -26,15 +26,15 @@ export default function Footer() {
           <button  className='bg-main w-full md:w-48 rounded-md text-white py-1' >Share App Link</button>
         </div>
         <div className='flex flex-col md:flex-row justify-between items-center border-y-2 border-slate-300 py-3 gap-5'>
-          <div className='flex justify-between items-center gap-4'>
+          <div className='flex justify-between items-center md:gap-4'>
           <h3>Payment Partners</h3>
-          <div className='flex gap-3 cursor-pointer'>
+          <div className='flex gap-1 md:gap-3 cursor-pointer'>
           {paymentMethods.map((method,index)=>(<img key={index} src={method.src} className='w-12'/>))}
           </div>
           </div>
-          <div className='flex justify-center items-center gap-5'>
+          <div className='flex justify-center items-center md:gap-5'>
             <h3>Get deliveries with FreshCart</h3>
-            <div className='flex justify-center gap-3 cursor-pointer'>
+            <div className='flex justify-center md:gap-3 cursor-pointer'>
               {appStores.map((app,index)=>(<img key={index} src={app.src} className='w-24'/>))}
             </div>
           </div>

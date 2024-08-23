@@ -69,7 +69,7 @@ export default function Login() {
             </div>}
         </div>
 
-        <div className='flex justify-between items-center'>
+        <div className='flex flex-col gap-2 md:flex-row md:gap-0 justify-between items-center'>
             {loading?
             <button type="button" className="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-main dark:focus:ring-green-800"><VscLoading className='text-xl animate-spin' /></button>
             :<button type="submit" className="text-white bg-main hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-main dark:focus:ring-green-800">Submit</button>
