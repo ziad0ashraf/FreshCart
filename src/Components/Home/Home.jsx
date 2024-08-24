@@ -19,12 +19,12 @@ export default function Home() {
       setProducts(data.data)
     } catch (error) {
       // console.log(error);
-      
     }    
   }
 
   useEffect(() => {
     getRecentProducts()
+    window.location.reload=true
   }, [])
   
 
