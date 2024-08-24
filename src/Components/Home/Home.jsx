@@ -17,6 +17,7 @@ export default function Home() {
       let {data}=await axios.get('https://ecommerce.routemisr.com/api/v1/products')
       // console.log(data.data);
       setProducts(data.data)
+      window.location.reload=true
     } catch (error) {
       // console.log(error);
     }    
@@ -24,7 +25,6 @@ export default function Home() {
 
   useEffect(() => {
     getRecentProducts()
-    window.location.reload=true
   }, [])
   
 
