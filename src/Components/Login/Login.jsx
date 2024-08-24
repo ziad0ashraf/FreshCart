@@ -22,6 +22,7 @@ export default function Login() {
       localStorage.setItem('user-token',data.token)
       setUserData(data.token)
       navigate('/')
+      window.location.reload();
     } catch (error) {
       setLoading(false)
       // console.log(error);

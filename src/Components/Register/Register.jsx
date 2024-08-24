@@ -24,6 +24,7 @@ export default function Register() {
       localStorage.setItem('user-token',data.token)
       setUserData(data.token)
       navigate('/')
+      window.location.reload();
     } catch (error) {
       setLoading(false)
       // console.log(error.response.data.message);
