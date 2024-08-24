@@ -118,7 +118,7 @@ a , a:hover{
   }
   
   .shipped{
-    animation: move 4s infinite ;
+    animation: move 4s ease-in-out infinite ;
   }
 
   @keyframes move {
@@ -126,20 +126,15 @@ a , a:hover{
       left: 20%;
       transform: rotateY(0deg);
     }
-    25% {
-      left: 20%;
-      transform: rotateY(0deg);
-    }
     50% {
       left: 100%;
-      transform: rotateY(180deg);
+      transform: rotateY(0deg);
     }
-    75% {
-      left: 100%;
+    51% {
       transform: rotateY(180deg);
     }
     100% {
       left: 20%;
-      transform: rotateY(0deg);
+      transform: rotateY(180deg);
     }
   }
