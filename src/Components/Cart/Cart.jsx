@@ -4,12 +4,15 @@ import { CartContext } from '../../Context/CartContext'
 import Loading from '../Loading/Loading'
 import EmptyCart from '../EmptyCart/EmptyCart'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 export default function Cart() {
 
-  const {getCartItems,updateProduct,deleteCart,cartItems} = useContext(CartContext)
 
+  
+  const {getCartItems,updateProduct,deleteCart,clearCart,cartItems} = useContext(CartContext)
+  
   const [cart, setCart] = useState(null)
-
+  
   const [loading, setLoading] = useState(false)
   
   async function getCart() {
@@ -36,7 +39,30 @@ export default function Cart() {
     setCart(response.data);
     setLoading(false); 
   }
-
+  
+  function handelClearCart() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!"
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+       await clearCart()
+       setCart(null);
+        Swal.fire({
+          title: "Cleared!",
+          text: "Your cart has been cleared.",
+          icon: "success"
+        });
+        setLoading(false); 
+      }
+    });  
+  }
   useEffect(() => {
     getCart()
   }, [])
@@ -48,7 +74,7 @@ export default function Cart() {
         {!loading ? (
           <>
             {cart ? (
-              <div className="container md:w-4/5 mb-5  shadow-md sm:rounded-lg">
+              <div className="container md:w-4/5 mb-5 my-2 p-2  shadow-md sm:rounded-lg">
                 {cartItems?.numOfCartItems !== 0 ? (
                   <>
                     {cart?.products?.map((product) => (
@@ -97,10 +123,11 @@ export default function Cart() {
                       <span>Total Price</span>
                       <span>{cart?.totalCartPrice} EGP</span>
                     </div>
-                    <div className="p-5">
-                      <button className="bg-main text-white py-1 px-2 outline-none rounded-md">
+                    <div className="flex flex-col w-1/4 md:w-1/6 gap-5 text-white">
+                      <button className="bg-main py-1 px-2 outline-none rounded-md">
                         <Link to="/checkout">Check Out</Link>
                       </button>
+                      <button onClick={()=>handelClearCart()} className='bg-red-600 py-1 px-2 outline-none rounded-md'>Clear Cart</button>
                     </div>
                   </>
                 ) : (

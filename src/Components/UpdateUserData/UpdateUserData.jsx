@@ -95,7 +95,7 @@ export default function UpdateUserData() {
                       <div>
                         {loading?
                         <button type="button" className=" text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:focus:ring-green-600"><VscLoading className='text-xl animate-spin' /></button>
-                        :<button type="submit" className=" text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:focus:ring-green-600">ChangePassword</button>
+                        :<button type="submit" className=" text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:focus:ring-green-600">Change Data</button>
                         }
                       </div>
                     {emailInUse&&<h1 className='bg-red-600 p-2 text-white rounded-lg'>{emailInUse}</h1>}

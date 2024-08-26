@@ -8,6 +8,7 @@ import { UserContext } from '../../Context/UserContext';
 import { CartContext } from '../../Context/CartContext';
 import { WishlistContext } from '../../Context/WishlistContext';
 import { GrUserManager } from 'react-icons/gr';
+import Swal from 'sweetalert2'
 
 
 export default function Navbar() {
@@ -33,6 +34,28 @@ export default function Navbar() {
       setDropDown(false)
     }
 
+    function handelLogout() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, Logout !"
+      }).then( (result) => {
+        if (result.isConfirmed) {
+          logOut()
+          Swal.fire({
+            title: "Done!",
+            text: "You will be logged out now.",
+            icon: "success"
+          });
+        }
+      });  
+    }
+  
+
   return (<>
 
     <nav className='fixed top-0 inset-x-0 bg-gray-200 text-slate-700 font-medium pt-4 md:py-2 z-10 font-sans'>
@@ -43,7 +66,7 @@ export default function Navbar() {
           <button onClick={()=>toggleButton()} className={`block md:hidden duration-500 ${smallNav ? "text-green-400" : "text-slate-700"}`}><FaAlignJustify className='text-3xl'/></button>
         </div>
         {userData&&
-                <ul className={`${smallNav ? "max-h-screen": "max-h-0 overflow-hidden"} font-semibold md:max-h-full duration-500 md:flex flex-col md:flex-row md:gap-5`}>
+                <ul onClick={()=>toggleButton()} className={`${smallNav ? "max-h-screen": "max-h-0 overflow-hidden"} font-semibold md:max-h-full duration-500 md:flex flex-col md:flex-row md:gap-5`}>
                   <li><NavLink className='px-2 py-2' to=''>Home</NavLink></li>
                   <li><NavLink className='px-2 py-2' to='products'>Products</NavLink></li>
                   <li><NavLink className='px-2 py-2' to='categories'>Categories</NavLink></li>
@@ -67,7 +90,7 @@ export default function Navbar() {
             </ul>
           </div>
         </div>
-          <div className='flex justify-center items-center gap-3 md:gap-5'>
+          <div onClick={()=>toggleButton()} className='flex justify-center items-center gap-3 md:gap-5'>
           <NavLink className={({ isActive }) =>`${isActive ? 'text-red-600' : 'text-slate-700'} px-1 py-2 duration-300`} to='wishlist'>
             <div className='flex items-center gap-2'>
               <span className='text-base'>Wishlist</span>
@@ -86,14 +109,14 @@ export default function Navbar() {
         </div>
         </>        
         }
-        <ul className='flex flex-row md:items-center gap-2 md:gap-5 cursor-pointer py-1 items-center'>
+        <ul onClick={()=>toggleButton()} className='flex flex-row md:items-center gap-2 md:gap-5 cursor-pointer py-1 items-center'>
             <li><FaFacebook /></li>
             <li><FaTwitter/></li>
             <li><FaLinkedin /></li>
             <li><FaInstagram /></li>
             <li><FaYoutube/></li>
             {userData?
-            <li><span onClick={logOut} className='font-semibold hover:text-red-600 duration-200'>Logout</span></li>
+            <li><span onClick={()=>handelLogout()} className='font-semibold hover:text-red-600 duration-200'>Logout</span></li>
             :<>
             <li><NavLink className='px-2 py-1' to='login'>Login</NavLink></li>
             <li><NavLink className='px-2 py-1' to='register'>Register</NavLink></li>            

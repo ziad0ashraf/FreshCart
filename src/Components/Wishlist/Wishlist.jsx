@@ -30,7 +30,7 @@ export default function Wishlist() {
   return (
     <>
       <section>
-        <div className="container">
+        <div className="container my-2">
           {!isLoading ? (
             wishlistCount != 0?
               <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
